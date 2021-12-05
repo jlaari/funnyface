@@ -1,0 +1,130 @@
+[
+  {
+    "condition": "emotion.anger > 0.8",
+    "message": "RAUHOITU! Oot turhan vihainen."
+  },
+  {
+    "condition": "emotion.surprise > 0.6",
+    "message": "Etkö tajunnut mitä nappia painamalla tapahtuu?"
+  },
+  {
+    "condition": "emotion.neutral > 0.8",
+    "message": "Näyttäisit jotain tunteita, vitun valopää."
+  },
+  {
+    "condition": "emotion.happiness > 0.8",
+    "message": "Mikä ilostuttaa, paskanaama?"
+  },
+  {
+    "condition": "emotion.happiness < 0.2",
+    "message": "Mitäpä jos yrittäisit vaikka nauttia elämästä välillä?"
+  },
+  {
+    "condition": "emotion.fear > 0.7",
+    "message": "Pelkäsitkö, että nappia painamalla maailma räjähtää ;D"
+  },
+  {
+    "condition": "age < 7",
+    "message": "Kuskasit sitten kuvaan lapsen, joka ei osaa edes lukea. Olen sanaton."
+  },
+  {
+    "condition": "age < 15",
+    "message": "Olet aivan vitun juniori, suksi vittuun jonne :::D"
+  },
+  {
+    "condition": "age > 50",
+    "message": "Tässä kohtaa olet jo elämäsi ehtoopuolella."
+  },
+  {
+    "condition": "age > 60",
+    "message": "Voinko noin vanhaksi edes elää? LOL!! :D"
+  },
+  {
+    "condition": "age > 75",
+    "message": "Miten helvetissä noin vanha ihminen osasi tänne?"
+  },
+  {
+    "condition": "facialHair.moustache > 0.4",
+    "message": "Melkoset puikot."
+  },
+  {
+    "condition": "facialHair.moustache > 0.6",
+    "message": "AIVAN JÄÄTÄVÄT VIIKSET. LOL!"
+  },
+  {
+    "condition": "facialHair.beard > 0.4",
+    "message": "Kiva parranalku kaverilla."
+  },
+  {
+    "condition": "facialHair.beard > 0.7",
+    "message": "Ei jeesus tota sun risukkoa."
+  },
+  {
+    "condition": "facialHair.beard > 0.9",
+    "message": "Sun parta on J-Ä-Ä-T-Ä-V-Ä-N RUMA."
+  },
+  {
+    "condition": "facialHair.sideburns > 0.3",
+    "message": "Taisin löytää kuvasta pienet pulisonginalut."
+  },
+  {
+    "condition": "facialHair.sideburns > 0.6",
+    "message": "EI VITTU MITKÄ PULISONGIT :D :D"
+  },
+  {
+    "condition": "smile > 0.7",
+    "message": "Mikä naurattaa, keijo?!"
+  },
+  {
+    "condition": "smile > 0.9",
+    "message": "Suupielesi näyttää olevan enemmän messingillä mitä Alex Stubbin."
+  },
+  {
+    "condition": "smile > 0.95",
+    "message": "Voitit pelin. Rakastan tuota hymyä."
+  },
+  {
+    "condition": "emotion.sadness > 0.7",
+    "message": "Näytät ihan helvetin surulliselta. Oikeasti."
+  },
+  {
+    "condition": "emotion.sadness > 0.4",
+    "message": "Oot todella surullinen tapaus."
+  },
+  {
+    "condition": "emotion.disgust > 0.7",
+    "message": "Haiseeko paska? ;D ;D"
+  },
+  {
+    "condition": "emotion.disgust > 0.7",
+    "message": "Pieraisit ja otit kuvan? Respect."
+  },
+  {
+    "condition": "hair.bald > 0.3",
+    "message": "Kevyt kaljuuntuminen on jo alkanut :D :D ONNEA"
+  },
+  {
+    "condition": "hair.bald > 0.5",
+    "message": "Ihan vielä ei ole kaikki karvat tippuneet päästä."
+  },
+  {
+    "condition": "hair.bald > 0.5",
+    "message": "HIUSRAJA SENKUN VETÄYTYY ;D ;D"
+  },
+  {
+    "condition": "hair.bald > 0.7",
+    "message": "Kaljupää homo"
+  },
+  {
+    "condition": "hair.bald > 0.7",
+    "message": "Kalju kuin spedellä"
+  },
+  {
+    "condition": "hair.bald > 0.7",
+    "message": "Veikö COVID hiuksetkin päästä?"
+  },
+  {
+    "condition": "hair.bald > 0.9",
+    "message": "Noin kiiltävää kaljua en olekaan hetkeen nähnyt."
+  }
+]
