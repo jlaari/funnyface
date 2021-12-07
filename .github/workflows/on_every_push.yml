@@ -1,0 +1,29 @@
+on:
+  push: {}
+
+name: Checkout, install and lint
+
+jobs:
+  checkout-and-install:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install --frozen-lockfile --check-files
+      - uses: actions/cache@v1
+        id: cache-build
+        with:
+          path: "."
+          key: ${{ github.sha }}
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: checkout-and-install
+    steps:
+      - uses: actions/cache@v1
+        id: restore-build
+        with:
+          path: "."
+          key: ${{ github.sha }}
+      - run: yarn lint
