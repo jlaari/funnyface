@@ -1,7 +1,7 @@
 on:
   push: {}
 
-name: Checkout, install and lint
+name: Checkout, install, lint and deploy
 
 jobs:
   checkout-and-install:
@@ -27,3 +27,21 @@ jobs:
           path: "."
           key: ${{ github.sha }}
       - run: yarn lint
+
+  build-and-deploy-review:
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - run: |
+          yarn global add vercel@23.1.2
+          vercel -t ${{ secrets.VERCEL_TOKEN }} --name funnyface --confirm
+
+  build-and-deploy-production:
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - run: |
+          yarn global add vercel@23.1.2
+          vercel -t ${{ secrets.VERCEL_TOKEN }} --name funnyface --confirm --prod
