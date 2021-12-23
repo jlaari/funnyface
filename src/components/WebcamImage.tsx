@@ -1,5 +1,6 @@
-import React, { MutableRefObject } from "react";
+import React, { MutableRefObject, useContext } from "react";
 import Webcam from "react-webcam";
+import { WindowContext } from "../common/WindowContextProvider";
 
 export interface WebcamImage {
   api: MutableRefObject<WebcamImageApi>;
@@ -11,7 +12,7 @@ export interface WebcamImageApi {
   trigger: () => void;
 }
 
-const videoConstraints = {
+const videoConstraints: MediaStreamConstraints["video"] = {
   facingMode: "user",
 };
 
@@ -19,11 +20,14 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
   api,
   afterCapture,
 }) => {
+  const { breakpoint } = useContext(WindowContext);
   const webcamRef = React.useRef() as MutableRefObject<Webcam>;
   api.current = {
     trigger: capture,
     reset: reset,
   };
+  const height = breakpoint == "small" ? 250 : 400;
+  videoConstraints.height = height;
 
   function capture() {
     const image: string = webcamRef.current.getScreenshot() || "";
@@ -39,7 +43,11 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
 
   if (image) {
     // TODO: Change to Image component later. Also update .eslintrc.json then.
-    return <img src={image} alt="Kuva sinusta" />;
+    return (
+      <div className="webcam-image">
+        <img src={image} alt="Kuva sinusta" />
+      </div>
+    );
   }
 
   return (
@@ -47,6 +55,7 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
       <Webcam
         audio={false}
         mirrored
+        height={height}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
@@ -54,7 +63,6 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
       <style jsx global>{`
         video {
           width: 100%;
-          max-width: 500px;
         }
       `}</style>
     </div>

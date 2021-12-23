@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
+import WindowContextProvider from "./common/WindowContextProvider";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -8,7 +9,9 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Vittuilukamera</title>
       </Head>
-      <Component {...pageProps} />
+      <WindowContextProvider>
+        <Component {...pageProps} />
+      </WindowContextProvider>
     </>
   );
 }
