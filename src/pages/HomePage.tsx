@@ -38,6 +38,7 @@ const HomePage: NextPage = () => {
   const reset = React.useCallback(async () => {
     webcamImageRef.current.reset();
     setFaceAttributes(null);
+    setErrorMessage(undefined);
   }, [webcamImageRef]);
 
   const onOnboardingCompleted = React.useCallback(async () => {
@@ -46,13 +47,13 @@ const HomePage: NextPage = () => {
   }, [webcamImageRef]);
 
   const buttonAction = onboardingCompleted
-    ? faceAttributes
+    ? faceAttributes || errorMessage
       ? () => reset()
       : () => webcamImageRef.current.trigger()
     : () => onOnboardingCompleted();
 
   const buttonText = onboardingCompleted
-    ? faceAttributes
+    ? faceAttributes || errorMessage
       ? "Nappaa uus"
       : "Nappaa foto"
     : "OK";
