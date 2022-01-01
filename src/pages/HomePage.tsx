@@ -15,6 +15,8 @@ const HomePage: NextPage = () => {
   const [faceAttributes, setFaceAttributes] =
     React.useState<FaceAttributes | null>();
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
+  const [onboardingCompleted, setOnboardingCompleted] =
+    React.useState<boolean>();
   const [faceAttributesLoading, setFaceAttributesLoading] =
     React.useState<boolean>(false);
   const webcamImageRef = React.useRef() as MutableRefObject<WebcamImageApi>;
@@ -38,11 +40,22 @@ const HomePage: NextPage = () => {
     setFaceAttributes(null);
   }, [webcamImageRef]);
 
-  const buttonAction = faceAttributes
-    ? () => reset()
-    : () => webcamImageRef.current.trigger();
+  const onOnboardingCompleted = React.useCallback(async () => {
+    webcamImageRef.current.ready();
+    setOnboardingCompleted(true);
+  }, [webcamImageRef]);
 
-  const buttonText = faceAttributes ? "Nappaa uus" : "Nappaa foto";
+  const buttonAction = onboardingCompleted
+    ? faceAttributes
+      ? () => reset()
+      : () => webcamImageRef.current.trigger()
+    : () => onOnboardingCompleted();
+
+  const buttonText = onboardingCompleted
+    ? faceAttributes
+      ? "Nappaa uus"
+      : "Nappaa foto"
+    : "OK";
 
   return (
     <div className="container">

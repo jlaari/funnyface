@@ -1,6 +1,7 @@
 import React, { MutableRefObject, useContext } from "react";
 import Webcam from "react-webcam";
 import { WindowContext } from "../common/WindowContextProvider";
+import { font } from "../styles/theme";
 
 export interface WebcamImage {
   api: MutableRefObject<WebcamImageApi>;
@@ -8,6 +9,7 @@ export interface WebcamImage {
 }
 
 export interface WebcamImageApi {
+  ready: () => void;
   reset: () => void;
   trigger: () => void;
 }
@@ -23,6 +25,7 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
   const { breakpoint } = useContext(WindowContext);
   const webcamRef = React.useRef() as MutableRefObject<Webcam>;
   api.current = {
+    ready: ready,
     trigger: capture,
     reset: reset,
   };
@@ -39,6 +42,11 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
     setImage(null);
   }
 
+  function ready() {
+    setReadyToShoot(true);
+  }
+
+  const [readyToShoot, setReadyToShoot] = React.useState<boolean>();
   const [image, setImage] = React.useState<string | null>(null);
 
   if (image) {
@@ -46,6 +54,29 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
     return (
       <div className="webcam-image">
         <img src={image} alt="Kuva sinusta" />
+      </div>
+    );
+  }
+
+  if (!readyToShoot) {
+    return (
+      <div className="webcam-instructions">
+        <p>
+          Hei valopää. Tarvitsen luvan kameraasi, jotta saan tehtyä sinulle
+          räätälöidyn vittuilun.
+        </p>
+        <p>Emme tallenna kuvaasi.</p>
+        <p>Käyttö omalla vastuulla.</p>
+        <style jsx>{`
+          .webcam-instructions {
+            text-align: center;
+            height: ${height}px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 35px;
+          }
+        `}</style>
       </div>
     );
   }
