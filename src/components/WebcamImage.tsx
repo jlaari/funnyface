@@ -53,7 +53,7 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
     // TODO: Change to Image component later. Also update .eslintrc.json then.
     return (
       <div className="webcam-image">
-        <img src={image} alt="Kuva sinusta" />
+        <img src={image} alt="Kuva sinusta" height={height} />
       </div>
     );
   }
