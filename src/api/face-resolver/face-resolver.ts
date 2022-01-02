@@ -20,6 +20,10 @@ export type FaceResolveError = {
 
 type AttributeValue = number | string;
 
+interface ObjectAttribute {
+  [key: string]: number | string;
+}
+
 const COGNITIVE_SERVICE_URL = process.env.AZURE_COGNITIVE_SERVICE_URL;
 
 const COGNITIVE_SERVICE_SUBSCRIPTION_KEY =
@@ -39,6 +43,7 @@ const NO_FACE_ERROR_MESSAGES = [
   "Taidat olla niin ruma, etten löytänyt kuvasta edes naamaa.",
   "Koitappa kääntää se kamera itseäsi kohden, että löydän naaman, urpo.",
   "Ei tästä kuvasta naamaa löydy. Kokeile uusiksi, valopää",
+  "Nyt taisi tulla niin ruma otos, etten löydä tästä naamaa. Kokeile ilman maskia.",
 ];
 
 const MULTIPLE_FACES_ERROR_MESSAGE = [
@@ -83,7 +88,7 @@ export const resolveFace = async (
     nickname: getRandom<string>(NICKNAMES),
     detectedAttribute: insult.attribute,
     detectedConfidence: get(face.faceAttributes, insult.attribute),
-    detectedValue: get(face.faceAttributes, insult.attribute),
+    detectedValue: getDetectedValue(face, insult).toString(),
   };
 };
 
@@ -131,10 +136,45 @@ const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+const getValueFromArray = (face: DetectedFace, insult: Insult) => {
+  // Some of attributes are stored in arrays.
+  // To keep our insults syntax as simple as possible, search also from arrays.
+  // Like:
+  //   "accessories":[{"type":"headwear","confidence":1}] (our syntax: accessories.type.headwear.confidence > x)
+  const reversedParts = insult.attribute.split(".").reverse();
+  // Check length.
+  // Last item is the key where the actual value can be found from the array (i.e. "confidence").
+  const key = reversedParts[0];
+  // Second last item is the array value (i.e. "headwear") that must match.
+  const matchValue = reversedParts[1];
+  // Third last item is the array key (i.e. "type") that must match.
+  const matchKey = reversedParts[2];
+  // The rest is path to array ("accessories").
+  const path = reversedParts.slice(3, reversedParts.length).reverse().join(".");
+  const items: Array<ObjectAttribute> = get(face.faceAttributes, path);
+  const item = items.find(
+    (item: ObjectAttribute) => item[matchKey] === matchValue
+  );
+  if (!item) {
+    return false;
+  }
+  return item[key];
+};
+
 const matchFace = (face: DetectedFace) => {
   return (insult: Insult) => {
-    const detected: AttributeValue = get(face.faceAttributes, insult.attribute);
+    const detectedValue = getDetectedValue(face, insult);
     const compare = OPERATOR_COMPARERS[insult.operator];
-    return compare(detected, insult.value);
+    return compare(detectedValue, insult.value);
   };
+};
+
+const getDetectedValue = (
+  face: DetectedFace,
+  insult: Insult
+): AttributeValue => {
+  return (
+    get(face.faceAttributes, insult.attribute) ??
+    getValueFromArray(face, insult)
+  );
 };

@@ -146,5 +146,33 @@
   {
     "condition": "glasses == swimmingGoggles",
     "message": "Mitä vittua, jätkä otti kuvan uimalasit päässään."
+  },
+  {
+    "condition": "accessories.type.headwear.confidence > 0.8",
+    "message": "Koitatko peittää kaljuas tolla päähineellä?"
+  },
+  {
+    "condition": "accessories.type.headwear.confidence > 0.8",
+    "message": "Hyi helvetti tota sun hattuas."
+  },
+  {
+    "condition": "hair.hairColor.color.gray.confidence > 0.7",
+    "message": "KEVYT HARMAANTUMINEN TAITAA OLLA JO KÄYNNISSÄ ::D"
+  },
+  {
+    "condition": "hair.hairColor.color.gray.confidence > 0.9",
+    "message": "NYT ON HARMAATA!!!"
+  },
+  {
+    "condition": "hair.hairColor.color.red.confidence > 0.9",
+    "message": "Onks sulla ruostetta myös alapäässä, punapää?"
+  },
+  {
+    "condition": "hair.hairColor.color.red.confidence > 0.9",
+    "message": "Ota tästä porkkana, punapää 🥕."
+  },
+  {
+    "condition": "hair.hairColor.color.blond.confidence > 0.9",
+    "message": "Miten osasit painaa oikeaa nappulaa blondi?"
   }
 ]

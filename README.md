@@ -51,7 +51,7 @@ Links to most important technologies:
       "exposure": { "exposureLevel": "goodExposure", "value": 0.45 },
       "noise": { "noiseLevel": "low", "value": 0.23 },
       "makeup": { "eyeMakeup": false, "lipMakeup": false },
-      "accessories": [],
+      "accessories":[ { "type":"headwear", "confidence":1 } ],
       "occlusion": {
         "foreheadOccluded": false,
         "eyeOccluded": false,
