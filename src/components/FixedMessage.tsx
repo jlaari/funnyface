@@ -21,7 +21,11 @@ const FixedMessage: React.FunctionComponent<FixedMessageProps> = ({
     <div className="fixed-message">
       {title}
       <Spacing top={12} bottom={12}>
-        ({attribute} - {value})
+        (
+        <i>
+          {attribute} - {value}
+        </i>
+        )
       </Spacing>
       <style jsx>{`
         .fixed-message {
