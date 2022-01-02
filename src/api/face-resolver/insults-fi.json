@@ -126,5 +126,25 @@
   {
     "condition": "hair.bald > 0.9",
     "message": "Noin kiiltävää kaljua en olekaan hetkeen nähnyt."
+  },
+  {
+    "condition": "glasses == ReadingGlasses",
+    "message": "Onpas idiootilla rumat lasit!"
+  },
+  {
+    "condition": "glasses == Sunglasses",
+    "message": "Noin rumaa naamaa ei edes aurinkolasit pelasta."
+  },
+  {
+    "condition": "glasses == Sunglasses",
+    "message": "Mistä löysit noin rumat aurinkolasit?"
+  },
+  {
+    "condition": "glasses == Sunglasses",
+    "message": "Hankit sitten eurolla aurinkolasit. RUMAT!"
+  },
+  {
+    "condition": "glasses == swimmingGoggles",
+    "message": "Mitä vittua, jätkä otti kuvan uimalasit päässään."
   }
 ]

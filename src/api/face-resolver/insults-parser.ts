@@ -1,19 +1,22 @@
 import rawInsults from "./insults-fi.json";
 
 export interface Insult {
-  // Example: emotion.neutral
+  // Example: emotion.neutral, glasses
   attribute: string;
-  // Example: >
+  // Example: >, <, or =
   operator: Operator;
-  // Example: 0.9
-  confidence: number;
+  // Example: 0.9, or "ReadingGlasses"
+  value: InsultValue;
   // You should show some feelings!
   message: string;
 }
 
+export type InsultValue = number | string;
+
 export enum Operator {
   ">" = ">",
   "<" = "<",
+  "==" = "==",
 }
 
 export const getInsults = (): Insult[] => {
@@ -27,6 +30,11 @@ function parseSingle(condition: string, message: string): Insult {
   const parts = condition.split(" ");
   const attribute = parts[0];
   const operator: Operator = <Operator>(<unknown>parts[1]);
-  const confidence = parseFloat(parts[2]);
-  return { attribute, operator, confidence, message };
+  const rawValue = parts[2];
+  const value = hasNumber(rawValue) ? parseFloat(rawValue) : rawValue;
+  return { attribute, operator, value, message };
+}
+
+function hasNumber(string: string) {
+  return /\d/.test(string);
 }

@@ -4,14 +4,14 @@ import Spacing from "./Spacing";
 export interface FixedMessageProps {
   title?: string;
   attribute?: string;
-  confidence?: string;
+  value?: string;
 }
 
 // Keeps the same height regardless of the given props.
 const FixedMessage: React.FunctionComponent<FixedMessageProps> = ({
   title,
   attribute,
-  confidence,
+  value,
 }) => {
   const height = 80;
   if (!title) {
@@ -21,7 +21,7 @@ const FixedMessage: React.FunctionComponent<FixedMessageProps> = ({
     <div className="fixed-message">
       {title}
       <Spacing top={12} bottom={12}>
-        ({attribute} - {confidence})
+        ({attribute} - {value})
       </Spacing>
       <style jsx>{`
         .fixed-message {

@@ -65,7 +65,7 @@ const HomePage: NextPage = () => {
         <FixedMessage
           title={faceAttributes?.message}
           attribute={faceAttributes?.detectedAttribute}
-          confidence={faceAttributes?.detectedConfidence?.toString()}
+          value={faceAttributes?.detectedValue}
         ></FixedMessage>
         <WebcamImage api={webcamImageRef} afterCapture={afterCapture} />
         <Spacing top={24} bottom={24}>

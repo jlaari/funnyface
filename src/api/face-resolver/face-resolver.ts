@@ -3,7 +3,7 @@ import NICKNAMES from "./nicknames-fi.json";
 import get from "lodash/get";
 import axios from "axios";
 import { FaceModels } from "@azure/cognitiveservices-face";
-import { getInsults, Insult, Operator } from "./insults-parser";
+import { getInsults, Insult, Operator, InsultValue } from "./insults-parser";
 
 export type FaceAttributes = {
   message: string;
@@ -11,11 +11,14 @@ export type FaceAttributes = {
   nickname: string;
   detectedAttribute: string;
   detectedConfidence: number;
+  detectedValue: string;
 };
 
 export type FaceResolveError = {
   message: string;
 };
+
+type AttributeValue = number | string;
 
 const COGNITIVE_SERVICE_URL = process.env.AZURE_COGNITIVE_SERVICE_URL;
 
@@ -44,11 +47,14 @@ const MULTIPLE_FACES_ERROR_MESSAGE = [
 ];
 
 const OPERATOR_COMPARERS = {
-  [Operator[">"]]: (a: number, b: number) => {
+  [Operator[">"]]: (a: AttributeValue, b: InsultValue) => {
     return a > b;
   },
-  [Operator["<"]]: (a: number, b: number) => {
+  [Operator["<"]]: (a: AttributeValue, b: InsultValue) => {
     return a < b;
+  },
+  [Operator["=="]]: (a: AttributeValue, b: InsultValue) => {
+    return a.toString().toLowerCase() === b.toString().toLowerCase();
   },
 };
 
@@ -77,6 +83,7 @@ export const resolveFace = async (
     nickname: getRandom<string>(NICKNAMES),
     detectedAttribute: insult.attribute,
     detectedConfidence: get(face.faceAttributes, insult.attribute),
+    detectedValue: get(face.faceAttributes, insult.attribute),
   };
 };
 
@@ -126,8 +133,8 @@ const getRandomInt = (min: number, max: number) => {
 
 const matchFace = (face: DetectedFace) => {
   return (insult: Insult) => {
-    const detectedConfidence = get(face.faceAttributes, insult.attribute);
+    const detected: AttributeValue = get(face.faceAttributes, insult.attribute);
     const compare = OPERATOR_COMPARERS[insult.operator];
-    return compare(detectedConfidence, insult.confidence);
+    return compare(detected, insult.value);
   };
 };
