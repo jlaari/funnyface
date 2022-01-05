@@ -32,7 +32,6 @@ Links to most important technologies:
     "faceRectangle": { "top": 172, "left": 187, "width": 178, "height": 178 },
     "faceAttributes": {
       "smile": 0,
-      "headPose": { "pitch": -6.6, "roll": -4.3, "yaw": 3.7 },
       "gender": "male",
       "age": 40,
       "facialHair": { "moustache": 0.6, "beard": 0.4, "sideburns": 0.1 },

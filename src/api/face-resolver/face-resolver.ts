@@ -44,6 +44,7 @@ const NO_FACE_ERROR_MESSAGES = [
   "Koitappa kääntää se kamera itseäsi kohden, että löydän naaman, urpo.",
   "Ei tästä kuvasta naamaa löydy. Kokeile uusiksi, valopää",
   "Nyt taisi tulla niin ruma otos, etten löydä tästä naamaa. Kokeile ilman maskia.",
+  "Yritäppä katsoa suoraan kameraan, urpoliini.",
 ];
 
 const MULTIPLE_FACES_ERROR_MESSAGE = [
@@ -106,7 +107,7 @@ const callCognitiveApi = async (
       returnFaceLandmarks: "false",
       recognitionModel: "recognition_04",
       returnFaceAttributes:
-        "age,gender,headPose,smile,facialHair,glasses,emotion," +
+        "age,gender,smile,facialHair,glasses,emotion," +
         "hair,makeup,occlusion,accessories,blur,exposure,noise,qualityForRecognition",
     },
   };
