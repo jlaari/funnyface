@@ -24,6 +24,26 @@
     "message": "Pelkäsitkö, että nappia painamalla maailma räjähtää ;D"
   },
   {
+    "condition": "emotion.surprise > 0.7",
+    "message": "NÄITKÖ JOULUPUKIN :::D"
+  },
+  {
+    "condition": "emotion.surprise > 0.3",
+    "message": "Taisit vähän pelästyä mua."
+  },
+  {
+    "condition": "emotion.contempt > 0.3",
+    "message": "Luuletko olevas parempi ihminen kuin me muut?"
+  },
+  {
+    "condition": "emotion.contempt > 0.7",
+    "message": "MIKÄ VITTU SUA HARMITTAA!? "
+  },
+  {
+    "condition": "emotion.contempt > 0.9",
+    "message": "Oisitko itte koodannu paremman? :D"
+  },
+  {
     "condition": "age < 7",
     "message": "Kuskasit sitten kuvaan lapsen, joka ei osaa edes lukea. Olen sanaton."
   },
