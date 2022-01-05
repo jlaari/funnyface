@@ -69,7 +69,8 @@ Links to most important technologies:
           { "color": "red", "confidence": 0.07 },
           { "color": "white", "confidence": 0 }
         ]
-      }
+      },
+      "qualityForRecognition": "high"
     }
   }
 ]

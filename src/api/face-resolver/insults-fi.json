@@ -174,5 +174,9 @@
   {
     "condition": "hair.hairColor.color.blond.confidence > 0.9",
     "message": "Miten osasit painaa oikeaa nappulaa blondi?"
+  },
+  {
+    "condition": "qualityForRecognition == low",
+    "message": "Millä helvetin perunalaitteella otit tämän kuvan?"
   }
 ]
