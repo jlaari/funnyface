@@ -109,7 +109,7 @@ const callCognitiveApi = async (
       recognitionModel: "recognition_04",
       returnFaceAttributes:
         "age,gender,smile,facialHair,glasses,emotion," +
-        "hair,makeup,occlusion,accessories,blur,exposure,noise,qualityForRecognition",
+        "hair,makeup,occlusion,accessories,qualityForRecognition",
     },
   };
   try {

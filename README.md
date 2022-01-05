@@ -46,9 +46,6 @@ Links to most important technologies:
         "sadness": 0,
         "surprise": 0
       },
-      "blur": { "blurLevel": "medium", "value": 0.74 },
-      "exposure": { "exposureLevel": "goodExposure", "value": 0.45 },
-      "noise": { "noiseLevel": "low", "value": 0.23 },
       "makeup": { "eyeMakeup": false, "lipMakeup": false },
       "accessories":[ { "type":"headwear", "confidence":1 } ],
       "occlusion": {
