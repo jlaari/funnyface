@@ -45,6 +45,7 @@ const NO_FACE_ERROR_MESSAGES = [
   "Ei tästä kuvasta naamaa löydy. Kokeile uusiksi, valopää",
   "Nyt taisi tulla niin ruma otos, etten löydä tästä naamaa. Kokeile ilman maskia.",
   "Yritäppä katsoa suoraan kameraan, urpoliini.",
+  "Nyt valoja päälle, niin saatan jopa löytää kuvasta naaman.",
 ];
 
 const MULTIPLE_FACES_ERROR_MESSAGE = [
