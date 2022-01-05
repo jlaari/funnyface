@@ -196,7 +196,27 @@
     "message": "Miten osasit painaa oikeaa nappulaa blondi?"
   },
   {
+    "condition": "hair.hairColor.color.white.confidence > 0.9",
+    "message": "Valkoiset hiukset. Mitä vittua. Oikeesti."
+  },
+  {
     "condition": "qualityForRecognition == low",
     "message": "Millä helvetin perunalaitteella otit tämän kuvan?"
+  },
+  {
+    "condition": "makeup.eyeMakeup == true",
+    "message": "Net on prinsesssalla eyelinerit kohdallaan."
+  },
+  {
+    "condition": "occlusion.foreheadOccluded == true",
+    "message": "Onks sulla jotenkin poikkeuksellisen ruma otsa, kun päätit sen peittää?"
+  },
+  {
+    "condition": "occlusion.eyeOccluded == true",
+    "message": "Onks sulla jotenkin poikkeuksellisen rumat silmät, kun päätit peittää ne?"
+  },
+  {
+    "condition": "occlusion.mouthOccluded == true",
+    "message": "Onks sulla jotenkin poikkeuksellisen ruma suu, kun päätit peittää sen?"
   }
 ]
