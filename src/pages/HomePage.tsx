@@ -66,6 +66,7 @@ const HomePage: NextPage = () => {
           title={faceAttributes?.message}
           attribute={faceAttributes?.detectedAttribute}
           value={faceAttributes?.detectedValue}
+          loading={faceAttributesLoading}
         ></FixedMessage>
         <WebcamImage api={webcamImageRef} afterCapture={afterCapture} />
         <Spacing top={24} bottom={24}>
@@ -73,6 +74,7 @@ const HomePage: NextPage = () => {
             name={faceAttributes?.nickname}
             age={faceAttributes?.age?.toString()}
             errorMessage={errorMessage}
+            loading={faceAttributesLoading}
           />
         </Spacing>
         <Button onClick={buttonAction} disabled={faceAttributesLoading}>
