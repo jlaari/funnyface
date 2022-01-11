@@ -1,7 +1,7 @@
+import classNames from "classnames";
 import React, { MutableRefObject, useContext } from "react";
 import Webcam from "react-webcam";
 import { WindowContext } from "../common/WindowContextProvider";
-import { font } from "../styles/theme";
 
 export interface WebcamImage {
   api: MutableRefObject<WebcamImageApi>;
@@ -49,15 +49,6 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
   const [readyToShoot, setReadyToShoot] = React.useState<boolean>();
   const [image, setImage] = React.useState<string | null>(null);
 
-  if (image) {
-    // TODO: Change to Image component later. Also update .eslintrc.json then.
-    return (
-      <div className="webcam-image">
-        <img src={image} alt="Kuva sinusta" height={height} />
-      </div>
-    );
-  }
-
   if (!readyToShoot) {
     return (
       <div className="webcam-instructions">
@@ -83,14 +74,27 @@ const WebcamImage: React.FunctionComponent<WebcamImage> = ({
 
   return (
     <div className="webcam">
-      <Webcam
-        audio={false}
-        mirrored
-        height={height}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        videoConstraints={videoConstraints}
-      />
+      <div className="webcam-image">
+        {
+          // TODO: Change to Image component later. Also update .eslintrc.json then.
+        }
+        {image && <img src={image} alt="Kuva sinusta" height={height} />}
+      </div>
+      <div className={classNames("webcam-capture", { hidden: !!image })}>
+        <Webcam
+          audio={false}
+          mirrored
+          height={height}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+        />
+      </div>
+      <style jsx>{`
+        .hidden {
+          display: none;
+        }
+      `}</style>
       <style jsx global>{`
         video {
           width: 100%;
