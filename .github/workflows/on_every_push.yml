@@ -33,6 +33,11 @@ jobs:
     needs: lint
     if: github.ref != 'refs/heads/master'
     steps:
+      - uses: actions/cache@v1
+        id: restore-build
+        with:
+          path: "."
+          key: ${{ github.sha }}
       - run: |
           yarn global add vercel@23.1.2
           vercel -t ${{ secrets.VERCEL_TOKEN }} --name funnyface --confirm
@@ -42,6 +47,11 @@ jobs:
     needs: lint
     if: github.ref == 'refs/heads/master'
     steps:
+      - uses: actions/cache@v1
+        id: restore-build
+        with:
+          path: "."
+          key: ${{ github.sha }}
       - run: |
           yarn global add vercel@23.1.2
           vercel -t ${{ secrets.VERCEL_TOKEN }} --name funnyface --confirm --prod
