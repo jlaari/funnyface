@@ -1,6 +1,6 @@
 # FunnyFace
 
-This Next.js app includes the frontend for the [https://www.vittuilukamera.com](www.vittuilukamera.com) project.
+This Next.js app includes the frontend for the [www.vittuilukamera.com](https://www.vittuilukamera.com) project.
 
 The app asks the user to upload selfie and it will generate insult based on the uploaded picture.
 
